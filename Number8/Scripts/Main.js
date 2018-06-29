@@ -3,8 +3,14 @@
     var NumberDays = $('#txt_NumberDays').val();
     var CountryCode = $('#txt_CountryCode').val();
 
-    if (StartDate == "" && NumberDays == "" && CountryCode == "") {
-        alert("Complete Empty Fields");
+    if (StartDate == "") {
+        alert("Please select a Start Date");
+        return;
+    } else if (NumberDays == "") {
+        alert("Please select a quantity of days");
+        return;
+    } else if (CountryCode == "") {
+        alert("Please select a Country Code");
         return;
     }
 
@@ -27,19 +33,24 @@ function Build(StartDate, NumberDays, CountryCode) {
     for (var i = 0; 0 < NumberDays; i++) {
         var cantDiasMes = diasMes(initMonth, initYear)
 
-        var sendNumbers = (NumberDays > cantDiasMes ? cantDiasMes : NumberDays);
+        var llll = (initDay != 1 ? cantDiasMes - initDay + 1 : (NumberDays > cantDiasMes ? cantDiasMes : NumberDays))
+
+        var sendNumbers = llll;
         dtp += HacerMes(sendNumbers, initDay, initMonth, initYear, cantDiasMes, headers)
+
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        console.log(monthNames[initMonth - 1] + ", " + sendNumbers);
 
         NumberDays = NumberDays - sendNumbers;
 
         initDay = 1;
         initYear = (initMonth == 12 ? initYear + 1 : initYear);
         initMonth = (initMonth == 12 ? 1 : initMonth + 1);
-    
+
         headers = false;
     }
     var headers2 = "<table style='width:25px' class='calendar'> <tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr> </table>"
-    $('#divNew').html(headers2+" "+dtp);
+    $('#divNew').html(headers2 + " " + dtp);
 }
 
 function diasMes(mes, anno) {
@@ -81,7 +92,7 @@ function DayNumberId(day, month, year) {
 function HacerMes(CantidadDias, initDay, initMonth, initYear, cantDiasMes, headers) {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    
+
     var t = '<div class="month">' + monthNames[initMonth - 1] + " " + initYear + ' </div>';
 
     var dayNumber = 0, numberOfDays = 7, styleClass = "";
