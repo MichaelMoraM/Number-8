@@ -33,13 +33,8 @@ function Build(StartDate, NumberDays, CountryCode) {
     for (var i = 0; 0 < NumberDays; i++) {
         var cantDiasMes = diasMes(initMonth, initYear)
 
-        var llll = (initDay != 1 ? cantDiasMes - initDay + 1 : (NumberDays > cantDiasMes ? cantDiasMes : NumberDays))
-
-        var sendNumbers = llll;
+        var sendNumbers = (initDay != 1 ? cantDiasMes - initDay + 1 : (NumberDays > cantDiasMes ? cantDiasMes : NumberDays));
         dtp += HacerMes(sendNumbers, initDay, initMonth, initYear, cantDiasMes, headers)
-
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        console.log(monthNames[initMonth - 1] + ", " + sendNumbers);
 
         NumberDays = NumberDays - sendNumbers;
 
