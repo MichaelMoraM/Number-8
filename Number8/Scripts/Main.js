@@ -87,7 +87,6 @@ function DayNumberId(day, month, year) {
 function HacerMes(CantidadDias, initDay, initMonth, initYear, cantDiasMes, headers) {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-
     var t = '<div class="month">' + monthNames[initMonth - 1] + " " + initYear + ' </div>';
 
     var dayNumber = 0, numberOfDays = 7, styleClass = "";
